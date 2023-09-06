@@ -10,7 +10,8 @@ RUN docker-php-ext-install pdo pdo_mysql
 
 
 # Copy the PHP API file into the container
-COPY api.php .
+# COPY api.php .
+COPY . .
 
 # Expose port 80 (HTTP) for the API
 EXPOSE 80

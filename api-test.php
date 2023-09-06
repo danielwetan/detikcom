@@ -1,60 +1,48 @@
 <?php
 
-require 'api.php'; // Include your application code
-
-function assertEqual($actual, $expected, $message = '')
+// Define a function to perform the test for a specific endpoint and method
+function testEndpoint($method, $endpoint, $requestData = [], $expectedResponse = '', $description = '')
 {
-    if ($actual === $expected) {
-        echo "PASS: $message\n";
-    } else {
-        echo "FAIL: $message\n";
-        echo "Expected: $expected\n";
-        echo "Actual: $actual\n";
-    }
+    $_SERVER['REQUEST_METHOD'] = $method;
+    $_SERVER['REQUEST_URI'] = $endpoint;
+
+    ob_start();
+
+    require_once 'api.php';
+
+    $output = ob_get_clean();
+
+    assert(
+        $output === $expectedResponse,
+        "Test failed: $description (Expected: $expectedResponse, Actual: $output)"
+    );
+
+    echo "Test passed: $description" . PHP_EOL;
 }
 
-// Create a mock PDO instance for testing
-$pdo = new class extends PDO {
-    public function __construct() {}
-    public function prepare($statement, $options = null) {}
-    public function beginTransaction() {}
-    public function commit() {}
-    public function rollBack() {}
-};
+// Test GET /transactions
+testEndpoint(
+    'GET',
+    '/transactions?references_id=123&merchant_id=456',
+    [],
+    '{"msg":"Transaction not found."}',
+    'GET /transactions'
+);
 
-// Initialize the controller with the mock PDO
-$controller = new TransactionController($pdo);
+// Test POST /transactions
+testEndpoint(
+    'POST',
+    '/transactions',
+    '',
+    '',
+    'POST /transactions'
+);
 
-// Test the getTransaction method
-$_GET['references_id'] = '12345';
-$_GET['merchant_id'] = 'merchant123';
-
-ob_start(); // Capture output to check response
-
-$controller->getTransaction();
-
-$output = ob_get_clean();
-
-assertEqual(http_response_code(), 200, 'HTTP status code should be 200');
-assertEqual(json_decode($output, true), ['references_id' => '12345', 'invoice_id' => '...', 'status' => '...'], 'Response should match expected data');
-
-// Test the createTransaction method
-$_POST = [
-    'invoice_id' => 'INV123',
-    'item_name' => 'Product A',
-    'amount' => 100.0,
-    'payment_type' => 'virtual_account',
-    'customer_name' => 'John Doe',
-    'merchant_id' => 'merchant123',
-];
-
-ob_start(); // Capture output to check response
-
-$controller->createTransaction();
-
-$output = ob_get_clean();
-
-assertEqual(http_response_code(), 201, 'HTTP status code should be 201');
-assertEqual(json_decode($output, true), ['references_id' => '...', 'va_number' => '...'], 'Response should match expected data');
-
-echo "Tests completed.\n";
+// Test PATCH /transactions
+testEndpoint(
+    'PATCH',
+    '/transactions',
+    '',
+    '',
+    'PATCH /transactions'
+);

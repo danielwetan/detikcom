@@ -15,7 +15,7 @@ $data = json_encode([
 ]);
 
 // Define the URL to send the POST request to
-$url = 'http://localhost:8080/transactions';
+$url = 'http://localhost/transactions';
 
 // Initialize cURL session
 $ch = curl_init();
@@ -26,7 +26,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
 ]);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
 // Execute cURL session and get the response
