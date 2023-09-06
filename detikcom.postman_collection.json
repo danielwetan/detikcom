@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "13c53602-25c9-48d5-a028-34830335cad3",
+		"name": "detikcom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11509747"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/transactions?references_id=64f81d78722f2&merchant_id=100",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "references_id",
+							"value": "64f81d78722f2"
+						},
+						{
+							"key": "merchant_id",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "localhost:8080/transactions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/transactions?references_id=64f81d78722f2&merchant_id=100",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "references_id",
+									"value": "64f81d78722f2"
+								},
+								{
+									"key": "merchant_id",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 06 Sep 2023 06:47:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"references_id\": \"64f81d78722f2\",\n    \"invoice_id\": \"12312\",\n    \"status\": \"active\"\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/transactions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"invoice_id\": 12312,\n    \"item_name\": \"Laptop\",\n    \"amount\": 10,\n    \"payment_type\": \"virtual_account\",\n    \"customer_name\": \"Adam\",\n    \"merchant_id\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/transactions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "localhost:8080/transactions",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice_id\": 12312,\n    \"item_name\": \"Laptop\",\n    \"amount\": 10,\n    \"payment_type\": \"virtual_account\",\n    \"customer_name\": \"Adam\",\n    \"merchant_id\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 06 Sep 2023 06:47:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"references_id\": \"64f8206c275af\",\n    \"va_number\": \"105175\"\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/transactions",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"references_id\": \"64f82380cc473\",\n    \"status\": \"failed\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/transactions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"references_id\": \"64f81d78722f2\",\n    \"status\": \"paid\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 06 Sep 2023 06:56:56 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.33"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"Transaction status updated successfully!\"\n}"
+				}
+			]
+		}
+	]
+}
